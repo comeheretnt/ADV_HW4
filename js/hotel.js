@@ -63,16 +63,14 @@ var listLocal = function() {
     var listhotel = "";
     for (var i in hotel) {
         var data = JSON.parse(JSON.stringify(hotel[i]));
-        var listhotel = '<div class="">';
+        var listhotel = '<div class="hotel-card">';
         listhotel += '<div class="card hotel p-2" style="width:auto">';
         listhotel += '<img class="card-img-top" src="img/' + data.img + '" alt="...">';
         listhotel += '<div class="card-title hotel-title text-center h5">' + data.name + '</div>';
-        listhotel += '<div class="location text-center h6">' + data.location + '</div>'; // Added location
-        listhotel += '<div class="price text-center h6">' + data.price + '₫</div>';
-        listhotel += '<span class="text-center add-to-cart btn btn-outline-warning add-cart" data-id="' + data.id + '" data-name="' + data.name + '" data-img="' + data.img + '" data-location="' + data.location + '" data-price="' + data.price + '" onclick="tks()">';
-        listhotel += '<a>';
-        listhotel += '<i class="fas fa-cart-plus"></i>';
-        listhotel += '</a>';
+        listhotel += '<div class="location text-center h6">' + data.location + '</div>'; 
+        listhotel += '<div class="price text-center h6">' + data.price.toLocaleString() + '₫</div>';
+        listhotel += '<span class="text-center view-details btn btn-outline-primary" onclick="viewDetails(\'' + data.id + '\')">';
+        listhotel += 'View Details';
         listhotel += '</span>';
         listhotel += '</div>';
         listhotel += '</div>';
@@ -83,3 +81,8 @@ var listLocal = function() {
 }
 
 listLocal();
+
+// Function to view details of a hotel
+function viewDetails(id) {
+    window.location.href = 'detail.html?id=' + id;
+}
